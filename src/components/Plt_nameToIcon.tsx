@@ -15,9 +15,10 @@ import { IconType } from "react-icons/lib";
 
 interface Props {
   platforms: Platform[];
+  selectedPlatform: Platform | null;
 }
 
-const Plt_nameToIcon = ({ platforms }: Props) => {
+const Plt_nameToIcon = ({ platforms, selectedPlatform }: Props) => {
     const iconMap: { [key: string] : IconType } = {
         pc: FaWindows,
         playstation: FaPlaystation,
@@ -33,7 +34,7 @@ const Plt_nameToIcon = ({ platforms }: Props) => {
   return (
     <HStack marginY={1}>
       {platforms.map((platform) => (
-        <Icon key={platform.id} as={iconMap[platform.slug]} color='gray.500'/>
+        <Icon key={platform.id} as={iconMap[platform.slug]} color={selectedPlatform?.id === platform.id ? 'white' : 'gray.500'}/>
       ))}
     </HStack>
   );

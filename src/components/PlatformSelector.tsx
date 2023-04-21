@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-const PlatformSelector = () => {
+const PlatformSelector = ({selectedPlatform, onSelectPlatform}: Props) => {
     const {dataArray, error} = usePlatforms();
 
     if (error) return null;
@@ -17,10 +17,10 @@ const PlatformSelector = () => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Platform
+        {selectedPlatform?.name || 'Platforms'}
       </MenuButton>
       <MenuList>
-        {dataArray.map(platform => <MenuItem key={platform.id}>{platform.name}</MenuItem>)}
+        {dataArray.map(platform => <MenuItem onClick={() => onSelectPlatform(platform)} key={platform.id}>{platform.name}</MenuItem>)}
       </MenuList>
     </Menu>
   );
