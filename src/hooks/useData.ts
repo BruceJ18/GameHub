@@ -10,7 +10,7 @@ interface FetchedDataResponse<T> {
 
 
 const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
-    const [dataArray, setData] = useState<T[]>([]);
+    const [data, setData] = useState<T[]>([]);
     const [error, setError] = useState('');
     const [isLoading, setLoading] = useState(false);
 
@@ -34,7 +34,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
 
     }, deps ? [...deps] : []);
 
-    return {dataArray, error, isLoading};
+    return {data, error, isLoading};
 
 }
 
