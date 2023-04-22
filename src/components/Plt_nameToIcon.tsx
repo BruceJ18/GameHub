@@ -18,7 +18,7 @@ interface Props {
   selectedPlatform: Platform | null;
 }
 
-const Plt_nameToIcon = ({ platforms, selectedPlatform }: Props) => {
+const Plt_nameToIcon = ({ platforms = [], selectedPlatform }: Props) => {
     const iconMap: { [key: string] : IconType } = {
         pc: FaWindows,
         playstation: FaPlaystation,
