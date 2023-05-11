@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Show, useColorMode } from "@chakra-ui/react";
 import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GameHeading from "./components/GameHeading";
@@ -6,8 +6,8 @@ import GenreList from "./components/GenreList";
 import NavBar from "./components/NavBar";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
-import { Genre } from "./hooks/useGenres";
-import { Platform } from "./hooks/usePlatforms";
+import ColorModeContext from "./state-management/contexts/colorModeContext";
+
 
 export interface GameQuery {
   genreId?: number;
@@ -18,8 +18,10 @@ export interface GameQuery {
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  const { colorMode } = useColorMode();
 
   return (
+    <ColorModeContext.Provider value={{colorMode}}>
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
@@ -70,6 +72,8 @@ function App() {
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
+    </ColorModeContext.Provider>
+    
   );
 }
 
