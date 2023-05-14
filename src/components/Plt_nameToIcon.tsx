@@ -19,10 +19,7 @@ interface Props {
   selectedPlatformId?: number;
 }
 
-const Plt_nameToIcon = ({
-  platforms = [],
-  selectedPlatformId,
-}: Props) => {
+const Plt_nameToIcon = ({ platforms = [], selectedPlatformId }: Props) => {
   const { colorMode } = useContext(ColorModeContext);
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
@@ -42,7 +39,13 @@ const Plt_nameToIcon = ({
         <Icon
           key={platform.id}
           as={iconMap[platform.slug]}
-          color={selectedPlatformId === platform.id && colorMode === 'dark' ? "white" : selectedPlatformId === platform.id && colorMode!== 'dark' ? 'black' : "gray.500"}
+          color={
+            selectedPlatformId === platform.id && colorMode === "dark"
+              ? "white"
+              : selectedPlatformId === platform.id && colorMode !== "dark"
+              ? "black"
+              : "gray.500"
+          }
         />
       ))}
     </HStack>
