@@ -4,12 +4,13 @@ import APIClient, { FetchedDataResponse } from "../services/api-client";
 import ms from "ms";
 import useGameQueryStore from "../store";
 
-const apiClient = new APIClient<Game>('games')
+const apiClient = new APIClient<Game>('/games')
 
 export interface Game {
   id: number;
   name: string;
-  description: string;
+  slug: string;
+  description_raw: string;
   background_image: string;
   parent_platforms: {platform: Platform}[];
   metacritic: number;
